@@ -1,0 +1,79 @@
+{
+    "users": [
+        {
+            "name": "Admin User",
+            "username": "admin",
+            "password": "admin123"
+        },
+        {
+            "name": "vaishu",
+            "username": "vaish098",
+            "password": "vaish123"
+        }
+    ],
+    "patients": [
+        {
+            "id": 1,
+            "name": "Ravi Kumar",
+            "age": "34",
+            "disease": "Diabetes"
+        },
+        {
+            "id": 2,
+            "name": "Sneha Reddy",
+            "age": "27",
+            "disease": "Fever"
+        },
+        {
+            "id": 3,
+            "name": "Arjun Rao",
+            "age": "45",
+            "disease": "Hypertension"
+        }
+    ],
+    "doctors": [
+        {
+            "id": 1,
+            "name": "Dr. Priya Sharma",
+            "specialization": "Cardiology"
+        },
+        {
+            "id": 2,
+            "name": "Dr. Karthik Iyer",
+            "specialization": "General Medicine"
+        },
+        {
+            "id": 3,
+            "name": "Dr. Anjali Nair",
+            "specialization": "Endocrinology"
+        }
+    ],
+    "appointments": [
+        {
+            "id": 1,
+            "patient_id": 1,
+            "doctor_id": 3,
+            "fee": 600.0,
+            "paid": true
+        },
+        {
+            "id": 2,
+            "patient_id": 2,
+            "doctor_id": 2,
+            "fee": 400.0,
+            "paid": false
+        },
+        {
+            "id": 3,
+            "patient_id": 3,
+            "doctor_id": 1,
+            "fee": 700.0,
+            "paid": true
+        }
+    ],
+    "next_ids": {
+        "patient": 4,
+        "doctor": 4,
+        "appointment": 4
+    }
+}
