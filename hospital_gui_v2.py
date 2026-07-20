@@ -9,7 +9,6 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 DATA_FILE = "hospital_data.json"
 
-# ---------- Color Theme: Clean Blue & White ----------
 SIDEBAR_COLOR = "#0f2557"
 SIDEBAR_ACTIVE = "#1d4ed8"
 BG_COLOR = "#f4f6fb"
@@ -73,7 +72,7 @@ class HospitalApp:
         self.current_user = None
         self.build_splash_screen()
 
-    # ---------- Helpers ----------
+
     def clear_screen(self):
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -102,7 +101,7 @@ class HospitalApp:
                           activebackground=PRIMARY_COLOR, activeforeground="white",
                           bd=0, pady=6, cursor="hand2")
 
-    # ---------- Splash ----------
+
     def build_splash_screen(self):
         self.clear_screen()
         self.add_gradient("#eef4ff", "#c7dbfb")
@@ -115,7 +114,7 @@ class HospitalApp:
                  bg="#eef4ff", fg=MUTED_COLOR).pack()
         self.root.after(1800, self.build_login_screen)
 
-    # ---------- Login ----------
+    
     def build_login_screen(self):
         self.clear_screen()
         self.current_user = None
@@ -172,7 +171,6 @@ class HospitalApp:
                 return
         messagebox.showerror("Login Failed", "Invalid username or password.")
 
-    # ---------- Sign Up ----------
     def build_signup_screen(self):
         self.clear_screen()
         self.add_gradient("#eef4ff", "#c7dbfb")
@@ -227,7 +225,7 @@ class HospitalApp:
         back_link.pack(pady=10)
         back_link.bind("<Button-1>", lambda e: self.build_login_screen())
 
-    # ---------- App Shell (sidebar + content area) ----------
+    
     def build_shell(self, active_key):
         self.clear_screen()
         self.root.configure(bg=BG_COLOR)
@@ -309,7 +307,7 @@ class HospitalApp:
         tk.Frame(card, bg=CARD_BG, height=14).pack()
         return card
 
-    # ---------- Dashboard ----------
+    
     def build_main_menu(self):
         content = self.build_shell("dashboard")
 
@@ -406,7 +404,7 @@ class HospitalApp:
             tree.insert("", "end", values=(get_patient_name(a["patient_id"]), get_doctor_name(a["doctor_id"]),
                                             a["fee"], status))
 
-        # Quick Actions
+        
         actions_label = tk.Label(content, text="Quick Actions", font=FONT_H2, bg=BG_COLOR, fg=TEXT_COLOR)
         actions_label.pack(anchor="w", padx=30, pady=(0, 8))
 
@@ -472,7 +470,7 @@ class HospitalApp:
         canvas.draw()
         canvas.get_tk_widget().pack(fill="both", expand=True, padx=5, pady=5)
 
-    # ---------- Patients ----------
+    
     def build_patients_screen(self):
         content = self.build_shell("patients")
         tk.Label(content, text="Manage Patients", font=("Segoe UI", 17, "bold"),
@@ -548,7 +546,7 @@ class HospitalApp:
         self.styled_button(btn_frame, "Edit Selected", edit_patient, bg=ACCENT_COLOR, width=15).pack(side="left", padx=5)
         self.styled_button(btn_frame, "Delete Selected", delete_patient, bg=DANGER_COLOR, width=15).pack(side="left", padx=5)
 
-    # ---------- Doctors ----------
+    
     def build_doctors_screen(self):
         content = self.build_shell("doctors")
         tk.Label(content, text="Manage Doctors", font=("Segoe UI", 17, "bold"),
@@ -596,7 +594,7 @@ class HospitalApp:
         self.styled_button(btn_frame, "Add Doctor", add_doctor, bg=SUCCESS_COLOR, width=15).pack(side="left", padx=5)
         self.styled_button(btn_frame, "Delete Selected", delete_doctor, bg=DANGER_COLOR, width=15).pack(side="left", padx=5)
 
-    # ---------- Appointments ----------
+    
     def build_appointment_screen(self):
         content = self.build_shell("appointments")
         tk.Label(content, text="Book Appointment", font=("Segoe UI", 17, "bold"),
@@ -645,7 +643,7 @@ class HospitalApp:
 
         self.styled_button(form_card, "Book Appointment", book, bg=SUCCESS_COLOR).pack(pady=15)
 
-    # ---------- Billing ----------
+    
     def build_billing_screen(self):
         content = self.build_shell("billing")
         tk.Label(content, text="Appointments & Billing", font=("Segoe UI", 17, "bold"),
