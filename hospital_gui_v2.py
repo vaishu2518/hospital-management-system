@@ -3,12 +3,9 @@ import os
 import datetime
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
-
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
 DATA_FILE = "hospital_data.json"
-
 SIDEBAR_COLOR = "#0f2557"
 SIDEBAR_ACTIVE = "#1d4ed8"
 BG_COLOR = "#f4f6fb"
@@ -503,7 +500,6 @@ class HospitalApp:
                   bg=ACCENT_COLOR, fg="white", relief="flat").pack(side="left", padx=5)
         tk.Button(search_frame, text="Clear", command=lambda: refresh_list(),
                   bg="#9ca3af", fg="white", relief="flat").pack(side="left")
-
         def add_patient():
             name = simpledialog.askstring("Add Patient", "Patient name:")
             if not name:
@@ -515,7 +511,6 @@ class HospitalApp:
             data["next_ids"]["patient"] += 1
             save_data(data)
             refresh_list()
-
         def delete_patient():
             selected = tree.selection()
             if not selected:
@@ -525,7 +520,6 @@ class HospitalApp:
             data["patients"] = [p for p in data["patients"] if p["id"] != patient_id]
             save_data(data)
             refresh_list()
-
         def edit_patient():
             selected = tree.selection()
             if not selected:
@@ -539,14 +533,11 @@ class HospitalApp:
                     p["disease"] = simpledialog.askstring("Edit Patient", "Disease:", initialvalue=p["disease"])
             save_data(data)
             refresh_list()
-
         btn_frame = tk.Frame(content, bg=BG_COLOR)
         btn_frame.pack(anchor="w", padx=30, pady=(0, 20))
         self.styled_button(btn_frame, "Add Patient", add_patient, bg=SUCCESS_COLOR, width=15).pack(side="left", padx=5)
         self.styled_button(btn_frame, "Edit Selected", edit_patient, bg=ACCENT_COLOR, width=15).pack(side="left", padx=5)
         self.styled_button(btn_frame, "Delete Selected", delete_patient, bg=DANGER_COLOR, width=15).pack(side="left", padx=5)
-
-    
     def build_doctors_screen(self):
         content = self.build_shell("doctors")
         tk.Label(content, text="Manage Doctors", font=("Segoe UI", 17, "bold"),
@@ -567,7 +558,6 @@ class HospitalApp:
             for d in data["doctors"]:
                 tree.insert("", "end", values=(d["id"], d["name"], d["specialization"]))
         refresh_list()
-
         def add_doctor():
             name = simpledialog.askstring("Add Doctor", "Doctor name:")
             if not name:
@@ -578,7 +568,6 @@ class HospitalApp:
             data["next_ids"]["doctor"] += 1
             save_data(data)
             refresh_list()
-
         def delete_doctor():
             selected = tree.selection()
             if not selected:
@@ -593,8 +582,6 @@ class HospitalApp:
         btn_frame.pack(anchor="w", padx=30, pady=(0, 20))
         self.styled_button(btn_frame, "Add Doctor", add_doctor, bg=SUCCESS_COLOR, width=15).pack(side="left", padx=5)
         self.styled_button(btn_frame, "Delete Selected", delete_doctor, bg=DANGER_COLOR, width=15).pack(side="left", padx=5)
-
-    
     def build_appointment_screen(self):
         content = self.build_shell("appointments")
         tk.Label(content, text="Book Appointment", font=("Segoe UI", 17, "bold"),
@@ -622,7 +609,6 @@ class HospitalApp:
         fee_entry = tk.Entry(form_card, font=FONT_NORMAL)
         fee_entry.insert(0, "500")
         fee_entry.pack()
-
         def book():
             if not patient_var.get() or not doctor_var.get():
                 messagebox.showwarning("Missing info", "Please select both a patient and a doctor.")
@@ -642,8 +628,6 @@ class HospitalApp:
             self.build_main_menu()
 
         self.styled_button(form_card, "Book Appointment", book, bg=SUCCESS_COLOR).pack(pady=15)
-
-    
     def build_billing_screen(self):
         content = self.build_shell("billing")
         tk.Label(content, text="Appointments & Billing", font=("Segoe UI", 17, "bold"),
